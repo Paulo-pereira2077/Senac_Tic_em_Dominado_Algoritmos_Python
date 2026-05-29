@@ -1,17 +1,50 @@
 #Exercício 9
 
-tamanho_pista = int(input("Tamanho da pista em metros: "))
-quantidade_voltas = int(input("Quantidade de voltas: "))
-tempo_primeira_volta = float(input("Tempo da primeira volta em segundos: "))
+tarefas = []
+status = []
 
-# Calculando a distância total em metros e convertendo para quilômetros
-distancia_total_m = tamanho_pista * quantidade_voltas
-distancia_total_km = distancia_total_m / 1000
+while True:
+    print("\n--- Menu de Tarefas ---")
+    print("1. Adicionar tarefa")
+    print("2. Listar tarefas")
+    print("3. Marcar concluída")
+    print("4. Exibir pendentes")
+    print("0. Sair")
+    opcao = input("Opção: ")
 
-# Mantendo o tempo de volta, calcula o tempo total em segundos e converte para minutos
-tempo_total_segundos = tempo_primeira_volta * quantidade_voltas
-tempo_total_minutos = tempo_total_segundos / 60
-
-print("Análise Preditiva Concluída-")
-print(f"Distância total a ser percorrida: {distancia_total_km} km.")
-print(f"Previsão de conclusão: {tempo_total_minutos} minutos.")
+    if opcao == '0':
+        print("Encerrando o programa...")
+        break
+    elif opcao == '1':
+        nome = input("Descrição da tarefa: ")
+        tarefas.append(nome)
+        status.append(False)
+        print("Tarefa adicionada com sucesso!")
+    elif opcao == '2':
+        if not tarefas:
+            print("Nenhuma tarefa cadastrada.")
+        else:
+            print("\nLista de tarefas:")
+            for i in range(len(tarefas)):
+                marca = "[X]" if status[i] else "[ ]"
+                print(f"{i+1}- {marca} {tarefas[i]}")
+    elif opcao == '3':
+        if not tarefas:
+            print("Nenhuma tarefa cadastrada.")
+        else:
+            idx = int(input("Número da tarefa para concluir: ")) - 1
+            if 0 <= idx < len(tarefas):
+                status[idx] = True
+                print(f"Tarefa {idx+1} marcada como concluída.")
+            else:
+                print("Tarefa inválida.")
+    elif opcao == '4':
+        if not tarefas:
+            print("Nenhuma tarefa cadastrada.")
+        else:
+            print("\nTarefas pendentes:")
+            for i in range(len(tarefas)):
+                if not status[i]:
+                    print(f"{i+1}- [ ] {tarefas[i]}")
+    else:
+        print("Opção inválida.")

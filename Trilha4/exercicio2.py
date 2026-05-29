@@ -1,17 +1,23 @@
 #Exercício 2
-quantPessoas = int(input("Quantas pessoas vão participar do churrasco? "))
+qtd = int(input("Quantidade de meses: "))
+faturamento = []
+for _ in range(qtd):
+    faturamento.append(float(input("Faturamento: ")))
 
-carne = quantPessoas * 0.300
-frango = quantPessoas * 0.150
-linguica = quantPessoas * 0.200
+print("\n>> Análise de Faturamento <<")
+print(f"Faturamento informado: {', '.join(map(str, faturamento))}")
 
-precoCarne = carne * 50.00
-precoFrango = frango * 22.00
-precoLinguica = linguica * 28.00
-precoTotal = precoCarne + precoFrango + precoLinguica
-precoPorPessoa = precoTotal / quantPessoas
+crescimento = all(faturamento[i] >= faturamento[i-1] for i in range(1, len(faturamento)))
+queda = all(faturamento[i] <= faturamento[i-1] for i in range(1, len(faturamento)))
+constante = all(f == faturamento[0] for f in faturamento)
 
-print(f"Quantidades:\n Carne: {carne:.2f}kg - Frango: {frango:.2f}kg - Linguiça: {linguica:.2f}kg")
-print(f"Custo total:\n Carne: R$ {precoCarne:.2f} - Frango: R$ {precoFrango:.2f} - Linguiça: R$ {precoLinguica:.2f}")
-print(f"Custo total do churrasco: R$ {precoTotal:.2f}")
-print(f"Cada pessoa deverá contribuir com R$ {precoPorPessoa:.2f}")
+if constante:
+    situacao = "Constante"
+elif crescimento:
+    situacao = "Crescimento"
+elif queda:
+    situacao = "Queda"
+else:
+    situacao = "Sem padrão"
+
+print(f"Situação: {situacao}")

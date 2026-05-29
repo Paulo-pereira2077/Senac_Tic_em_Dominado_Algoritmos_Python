@@ -1,12 +1,22 @@
 #Exercício 3
 
-nome = input("Digite o nome do(a) estudante:")
-print()
-print("Digite suas notas:")
-nota1 = float(input("Nota 1: "))
-nota2 = float(input("Nota 2: "))
-nota3 = float(input("Nota 3: "))
+projeto = input("Nome do projeto: ")
+qtd = int(input("Quantidade de doações: "))
+meta = float(input("Meta financeira: "))
 
-media = (nota1 + nota2 + nota3) / 3
+doacoes = []
+for _ in range(qtd):
+    doacoes.append(float(input("Doação: ")))
 
-print(f"O(a) estudante {nome} ficou com média {media}")
+print("\n>> Resumo das Doações <<")
+print(f"Projeto: {projeto}")
+print(f"Doações recebidas: {', '.join(map(str, doacoes))}")
+
+total = sum(doacoes)
+print(f"Total arrecadado: {total}")
+print(f"Maior doação: {max(doacoes)}")
+
+if total >= meta:
+    print("Situação: Meta atingida")
+else:
+    print("Situação: Meta não atingida")

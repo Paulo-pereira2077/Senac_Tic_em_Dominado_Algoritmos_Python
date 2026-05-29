@@ -1,15 +1,25 @@
 #Exercício 5
 
-nome = input("Digite seu nome: ")
-valor_compra = float(input("Digite o valor da compra: "))
-porcentagem_desconto = input("Digite o valor do desconto (%): ")
-valor_porcentagem_desconto = float(porcentagem_desconto)
+palavra = list(input("Palavra secreta: ").upper())
+print("\n" * 50)  # Limpa o console empurrando o texto para cima
+oculta = ["_"] * len(palavra)
+erros = 0
 
-valor_desconto = valor_compra * (valor_porcentagem_desconto / 100)
+while erros < 7 and "_" in oculta:
+    print(f"\nEstado: {' '.join(oculta)}")
+    print(f"Erros: {erros}")
+    letra = input("Letra: ").upper()
 
-# Subtrair o desconto do valor original
-total_final = valor_compra - valor_desconto
+    if letra in palavra:
+        for i in range(len(palavra)):
+            if palavra[i] == letra:
+                oculta[i] = letra
+    else:
+        erros += 1
 
-print(f"Olá {nome}, sua compra de R$ {valor_compra:.2f} foi confirmada!")
-print(f"Foi aplicado um desconto de {porcentagem_desconto}%.")
-print(f"O total final ficou em R$ {total_final:.2f}")
+if "_" not in oculta:
+    print(f"\nEstado: {' '.join(oculta)}\nErros: {erros}")
+    print("Parabéns! Você descobriu a palavra.")
+else:
+    print(f"\nEstado: {' '.join(oculta)}\nErros: {erros}")
+    print(f"Você perdeu! A palavra era: {''.join(palavra)}")

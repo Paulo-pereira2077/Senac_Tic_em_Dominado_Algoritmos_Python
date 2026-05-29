@@ -1,12 +1,16 @@
 #Exercício 7
 
-nome = input("Digite o nome da pessoa: ")
-livro = input("Digite o nome do livro: ")
-paginas = int(input("Total de páginas: "))
-segundos = int(input("Tempo em segundos de leitura por página: "))
+transacoes = []
 
-tempo_total_segundos = paginas * segundos
+while len(transacoes) < 1000:
+    valor = float(input("Transação (-1 para sair, 0 para cancelar): "))
+    if valor == -1:
+        break
+    elif valor == 0:
+        if transacoes:
+            transacoes.pop() # Remove a última transação válida
+    else:
+        transacoes.append(valor)
 
-horas = tempo_total_segundos / 3600
-
-print(f"{nome}, você finalizará a leitura do livro {livro} \nem aproximadamente {horas:.2f} horas.")
+saldo = sum(transacoes)
+print(f"\nSaldo final: {saldo}")

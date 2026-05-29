@@ -1,10 +1,23 @@
 #Exercício 1
-print("Digite seus dados.")
-name = input("Qual seu nome?")
-curso = input("Qual seu curso?")
-semestre = input("Qual seu semestre?")
-hobby = input("Qual seu hobby favorito?")
+qtd = int(input("Quantidade de alunos: "))
+notas = []
+for _ in range(qtd):
+    notas.append(float(input("Nota: ")))
 
-print(f"Prazer, eu sou o(a) {name}!\nAtualmente estou no {semestre}º semestre de {curso}\ne meu hobby favorito é {hobby}")
+print("\n>> Resultado da Turma <<")
+print(f"Notas informadas: {', '.join(map(str, notas))}")
 
+media = sum(notas) / qtd
+print(f"Média da turma: {media:.1f}")
+print(f"Maior nota: {max(notas)}")
+print(f"Menor nota: {min(notas)}")
 
+aprovados = sum(1 for n in notas if n >= 6)
+reprovados = qtd - aprovados
+print(f"Aprovados: {aprovados}")
+print(f"Reprovados: {reprovados}")
+
+if reprovados == 0:
+    print("Situação geral: Todos os alunos foram aprovados")
+else:
+    print("Situação geral: Nem todos os alunos foram aprovados")
